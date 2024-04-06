@@ -31,7 +31,8 @@ Solution folder structure is depicted in the scheme below.
 ```
 └── api_startup.sh
 └── Dockerfile
-└── docker_startup.sh
+└── docker_commands.sh
+└── docker_api_startup.sh
 └── README.md
 └── requirements.txt
 └── 📁src
