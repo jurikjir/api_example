@@ -82,6 +82,7 @@ The input request is automatically checked for the following criteria:
 - The question value must have a minimum length of 1 and a maximum length of 512 characters.
 
 ## Testing
+![](./img/tests.png)
 Tests for the custom validation API version have been implemented and can be found in the src/tests/test_main.py file. Below is a list of the implemented tests:
 
 - test_invalid_id_length
@@ -103,7 +104,11 @@ bash api_startup.sh
 ```
 The script will first check if Miniconda is installed on the system. If not, the installation file will be downloaded and Miniconda will be installed. Then, the script will check if a Conda environment is created; if not, the environment will be created and all necessary packages will be installed into it. In the last step, the user will be prompted to choose between deploying the variant with custom or Pydantic validations.
 
+![](./img/cp_choice.PNG)
+
 API test cases are automatically triggered when the user chooses custom validations during the API deployment.
+
+![](./img/api_start.PNG)
 
 Once the script is successfully executed, the API is ready to handle requests. You can try it out with the following command:
 
