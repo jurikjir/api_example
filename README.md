@@ -108,9 +108,11 @@ The script will first check if Miniconda is installed on the system. If not, the
 
 API test cases are automatically triggered when the user chooses custom validations during the API deployment.
 
+Once the script is successfully executed, the API is ready to handle requests:
+
 ![](./img/api_start.PNG)
 
-Once the script is successfully executed, the API is ready to handle requests. You can try it out with the following command:
+You can try it out with the following command:
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"id": "id_value", "question": "question_value"}' http://127.0.0.1:8000/question
