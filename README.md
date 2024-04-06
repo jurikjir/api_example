@@ -17,11 +17,11 @@ The API returns answer in following format:
 # Example 
 
 **user input:**
-```
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{"id": "id_value", "question": "question_value"}' http://127.0.0.1:8000/question
 ```
 **API response:**
-```
+```bash
 {"answer":"z|,1^,+@S)Rhejem>'KMFq2_s:XErADySxpmDIoqEm81r\\0%38{fhH7mH[.S>d%(sT9e'R]Nhh\\xx-.H~hEkY|_U)C#,_0\\B8/O($yjJv5-=clU)%r@DpHw:7>2p5"}
 ```
 
@@ -53,7 +53,7 @@ This version of API implementation utilizes custom input validators. Requests se
 ## pydantic input validations
 For this particular use case, Pydantic input request validation should suffice. By defining a base model in the following manner:
 
-```
+```python
 class Payload(BaseModel):
     """
     A Pydantic model that contains the id and question.
@@ -82,7 +82,7 @@ The input request is automatically checked for the following criteria:
 - The question value must have a minimum length of 1 and a maximum length of 512 characters.
 
 ## Testing
-![](./img/tests.png)
+![](./img/tests.PNG)
 Tests for the custom validation API version have been implemented and can be found in the src/tests/test_main.py file. Below is a list of the implemented tests:
 
 - test_invalid_id_length
@@ -114,14 +114,14 @@ Once the script is successfully executed, the API is ready to handle requests:
 
 You can try it out with the following command:
 
-```
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{"id": "id_value", "question": "question_value"}' http://127.0.0.1:8000/question
 ```
 
 ## Docker deployment
 The API can also be deployed as a Docker container. To do so, first, check if Docker is installed on your system by running the following command:
 
-```
+```bash
 docker --version
 ```
 
@@ -132,20 +132,20 @@ Linux: https://docs.docker.com/engine/install/ubuntu/
 
 To deploy the API with Docker, run the following script inside the project's root folder:
 
-```
+```bash
 bash docker_api_startup.sh
 ```
 
 or manually by executing following commands:
 
-```
+```bash
 docker build -t api .
 docker run -d -p 8000:8000 api
 ```
 
 After you have finished testing the API, remember to stop the Docker image by executing the following command:
 
-```
+```bash
 docker stop $(docker ps -q --filter ancestor=api )
 ```
 
@@ -154,12 +154,12 @@ docker stop $(docker ps -q --filter ancestor=api )
 
 The API can be installed and deployed manually as well. First, ensure that conda is installed on your system by running the following command in the terminal:
 
-```
+```bash
 conda --version 
 ```
 
 If conda is not installed, please execute the following commands in the terminal:
-```
+```bash
 mkdir -p ~/miniconda3
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
@@ -171,32 +171,32 @@ export PATH=$PATH:~/miniconda3/bin/
 
 Create and activate conda environment:
 
-```
+```bash
 conda create -n restapi python=3.12.2
 conda activate restapi
 ```
 
 To install the packages needed for the API, navigate to the project's root folder and execute the following command:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
 To run predeployment tests execute:
 
-```
+```bash
 pytest --verbose --pyargs src
 ```
 
 To run the API with custom validators execute:
 
-```
+```bash
 uvicorn src.app_custom_validations:app --workers 4 --host 0.0.0.0 --port 8000
 ```
 
 or with pydantic validators:
 
-```
+```bash
 uvicorn src.app_pydantic_validations:app --workers 4 --host 0.0.0.0 --port 8000
 ```
 
